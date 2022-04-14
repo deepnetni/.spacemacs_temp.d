@@ -46,10 +46,15 @@
 (defconst deepnetni-emacs-env-packages
   '(counsel-etags
     cc-mode
-    ;; ggtags
+    counsel
+    ;ggtags
+    helm-ag
+    hl-todo
     imenu-list
     javascript
-    magit
+    ;magit
+    ;org-bullets
+    ;org-projectile
     projectile
     python
     yard-mode)
@@ -104,16 +109,42 @@ Each entry is either:
       (add-hook 'prog-mode-hook
                 (lambda ()
                   (add-hook 'after-save-hook
-                            'counsel-etags-virtual-update-tags 'append 'local))))
+                            'counsel-etags-virtual-update-tags 'append 'local)))
+      (global-set-key (kbd "C-c C-t") 'counsel-etags-list-tag)
+      ; the following method will show c-mode-map as a variable is void error
+      ; (define-key c-mode-map (kbd "C-c C-u") 'counsel-etags-update-tags-force)
+      ; using eval-after-load or add-hook to bind key
+      ; eval-after-load means run the second parameter while load cc-mode.el file
+      (eval-after-load 'cc-mode
+        '(define-key c-mode-map (kbd "C-c C-u") 'counsel-etags-update-tags-force))
+      (advice-add 'counsel-etags-find-tag-at-point :after
+                  (lambda () (evil-scroll-line-to-center (line-number-at-pos))))
+      (advice-add 'counsel-etags-list-tag :after
+                  (lambda () (evil-scroll-line-to-center (line-number-at-pos)))))
     :config
     (setq counsel-etags-update-interval 60)
-    ;(modify-syntax-entry ?_ "w")
-    (push "build" counsel-etags-ignore-directories)))
+    ;; counsel-etags-ignore-directories does NOT support wildcast
+    (push "build" counsel-etags-ignore-directories)
+    (push "build_clang" counsel-etags-ignore-directories)
+    ;; counsel-etags-ignore-filenames supports wildcast
+    (push "*.json" counsel-etags-ignore-filenames)
+    (push "TAGS" counsel-etags-ignore-filenames)))
 
 (defun deepnetni-emacs-env/pre-init-cc-mode ()
   (spacemacs|use-package-add-hook cc-mode
     :post-init
     (add-hook 'c-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+
+(defun deepnetni-emacs-env/pre-init-counsel ()
+  (spacemacs|use-package-add-hook counsel
+    :post-init
+    (progn
+      (add-hook 'c-mode-hook #'(lambda ()
+                                 (define-key c-mode-map (kbd "C-c C-c") 'counsel-ag)))
+      ;(global-set-key (kbd "C-c j") 'counsel-git-grep)
+      ; use projectile to get file C-p
+      ;(global-set-key (kbd "C-c f") 'counsel-git)
+      )))
 
 ; (defun deepnetni-emacs-env/init-ggtags ()
 ;   (use-package ggtags
@@ -123,6 +154,40 @@ Each entry is either:
 ;               (lambda ()
 ;                 (when (derived-mode-p 'c-mode 'c++-mode 'java-mode)
 ;                   (ggtags-mode 1))))))
+
+(defun deepnetni-emacs-env/init-helm-ag ()
+  (use-package helm-ag
+    :defer t
+    :ensure t
+    :init
+    (progn
+      ;(modify-coding-system-alist 'process "ag" '(utf-8 . chinese-gbk-dos))
+      (custom-set-variables
+       ; enable helm-follow-mode which will disable the helm-resume function
+       ;'(helm-follow-mode-persistent t)
+       '(helm-ag-insert-at-point 'symbol)
+       '(helm-ag-base-command "ag --nocolor --nogroup -w")
+       ;'(helm-ag-command-option "--all-text")
+       '(helm-ag-insert-at-point 'symbol)
+       ;'(helm-ag--ignore-case)
+       '(helm-ag-ignore-buffer-patterns '("\\.txt\\'" "\\.mkd\\'")))
+      (global-set-key (kbd "C-c a") 'helm-ag)
+      (global-set-key (kbd "C-l") 'helm-ag-project-root)
+      (global-set-key (kbd "C-j") 'helm-resume)
+      (add-hook 'c-mode-hook 'helm-mode)
+      )
+    :config
+    (advice-add 'helm-ag :after
+                (lambda (&optional basedir query) (evil-scroll-line-to-center (line-number-at-pos))))
+    ; &reset _ means don't care about the args
+    (advice-add 'helm-ag-project-root :after
+                (lambda (&rest _) (evil-scroll-line-to-center (line-number-at-pos))))))
+
+(defun deepnetni-emacs-env/pre-init-hl-todo ()
+  (spacemacs|use-package-add-hook hl-todo
+    :post-config
+    (define-key hl-todo-mode-map (kbd "C-c i") 'hl-todo-insert)
+    (define-key hl-todo-mode-map (kbd "C-c o") 'hl-todo-occur)))
 
 (defun deepnetni-emacs-env/init-imenu-list ()
   (use-package imenu-list
@@ -142,7 +207,24 @@ Each entry is either:
     :defer t
     ))
 
-; :bind-keymap ("C-c p" . projectile-command-map)
+(defun deepnetni-emacs-env/init-org-bullets ()
+  (use-package org-bullets
+    :ensure t
+    :defer t
+    :init
+    (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1)))))
+
+(defun deepnetni-emacs-env/pre-init-org-projectile ()
+  (spacemacs|use-package-add-hook org-projectile
+    :post-config
+    (progn
+      (org-projectile-per-project)
+      (setq org-projectile-per-project-filepath "todos.org")
+      (setq org-agenda-files (append org-agenda-files (org-projectile-todo-files)))
+      (global-set-key (kbd "C-c c") 'org-capture)
+      (global-set-key (kbd "C-c n p") 'org-projectile-project-todo-completing-read))))
+
+;:bind-keymap ("C-c p" . projectile-command-map)
 (defun deepnetni-emacs-env/pre-init-projectile ()
   (spacemacs|use-package-add-hook projectile
     :post-config

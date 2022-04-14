@@ -22,15 +22,8 @@
 
 ;;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
+(define-key global-map (kbd "C-k") nil)
 ;; =================== evil =====================
-(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
-;(define-key evil-normal-state-map (kbd "W") 'evil-forward-word-begin)
-;(define-key evil-normal-state-map (kbd "B") 'evil-backward-word-begin)
-;(define-key evil-normal-state-map (kbd "E") 'evil-forward-word-end)
-
-;;(define-key evil-normal-state-map (kbd "w") 'evil-forward-WORD-begin)
-;;(define-key evil-normal-state-map (kbd "e") 'evil-forward-WORD-end)
-;;(define-key evil-normal-state-map (kbd "b") 'evil-backward-WORD-begin)
 
 (define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char)
 (define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
@@ -39,13 +32,20 @@
 (define-key evil-insert-state-map (kbd "TAB") 'yas-expand)
 (define-key evil-insert-state-map (kbd "M-i") 'tab-to-tab-stop)
 
+(define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
+;(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+(define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
+(define-key evil-normal-state-map (kbd "C-=") 'evil-window-increase-height)
+(define-key evil-normal-state-map (kbd "C--") 'evil-window-decrease-height)
+(define-key evil-normal-state-map (kbd "C-.") 'evil-window-increase-width)
+(define-key evil-normal-state-map (kbd "C-,") 'evil-window-decrease-width)
 (define-key evil-normal-state-map (kbd "M-h") 'evil-window-left)
+(define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "M-l") 'evil-window-right)
 (define-key evil-normal-state-map (kbd "M-j") 'evil-window-down)
 (define-key evil-normal-state-map (kbd "M-k") 'evil-window-up)
 
 ;(define-key evil-visual-state-map (kbd "C-c") (progn ()))
-
 ;; (global-set-key [f8] 'neotree-toggle)
 
 ; =================== counsel-etags ===============
