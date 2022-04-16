@@ -39,7 +39,7 @@
 (define-minor-mode deepnetni-mode
   "A minor mode for deepnetni to override conflict keymaps."
   :init-value t
-  :lighter " Ni")
+  :lighter " ^")
 
 ;; override keybinds defined after deepnetni packages
 (defvar deepnetni-mode-map
