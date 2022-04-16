@@ -603,8 +603,6 @@ before packages are loaded."
   ;              :weight 'normal
   ;              :slant 'normal
   ;              :size 15.0)))
-  ;(set-face-attribute 'default nil :family "Source Code Pro")
-  ;(set-face-attribute 'default nil :height 151)
   ;(menu-bar-mode 1)
 
   ;; magit-auto-company

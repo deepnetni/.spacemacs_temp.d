@@ -18,12 +18,6 @@
 (setq tags-table-list nil)
 (setq debug-on-error nil)
 
-;; ignore warning about cl is deprecated
-(setq byte-compile-warnings '(cl-functions))
-
-(eval-after-load
-    'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
-
 (setq deepnetni-emacs-env--goto-center-hook
       #'(evil-ex-search-next
         evil-ex-search-previous
@@ -39,7 +33,7 @@
 (define-minor-mode deepnetni-mode
   "A minor mode for deepnetni to override conflict keymaps."
   :init-value t
-  :lighter " ^")
+  :lighter "")
 
 ;; override keybinds defined after deepnetni packages
 (defvar deepnetni-mode-map
@@ -75,3 +69,9 @@
 
 (add-hook 'minibuffer-setup-hook #'(lambda ()
                                      (deepnetni-mode nil)))
+
+;; ignore warning about cl is deprecated
+(setq byte-compile-warnings '(cl-functions))
+(eval-after-load 'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
+(setq python-indent-guess-indent-offset t)
+(setq python-indent-guess-indent-offset-verbose nil)
