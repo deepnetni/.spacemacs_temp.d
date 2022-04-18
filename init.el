@@ -60,6 +60,7 @@ This function should only modify configuration layer settings."
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
+     ;; chinese
      (treemacs :variables treemacs-use-filewatch-mode t))
 
 
@@ -261,8 +262,8 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("Input Mono"
-                               :size 20
+   dotspacemacs-default-font '("InputMono Medium"
+                               :size 15.0
                                :weight bold
                                :width normal
                                :powerline-scale 1.3)
@@ -596,13 +597,12 @@ before packages are loaded."
   ;                  :slant 'normal
   ;                  :size 15.0))
   ;(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  ;  (set-fontset-font
-  ;   (frame-parameter nil 'font)
-  ;   charset
-  ;   (font-spec :name "KaiTi"
-  ;              :weight 'normal
-  ;              :slant 'normal
-  ;              :size 15.0)))
+  ;  (set-fontset-font (frame-parameter nil 'font) charset
+  ;                    (font-spec
+  ;                     :name "Input Mono"
+  ;                     :weight 'normal
+  ;                     :slant 'normal
+  ;                     :size 10.0)))
   ;(menu-bar-mode 1)
 
   ;; magit-auto-company

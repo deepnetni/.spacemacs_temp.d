@@ -32,8 +32,13 @@
 (define-key evil-insert-state-map (kbd "TAB") 'yas-expand)
 (define-key evil-insert-state-map (kbd "M-i") 'tab-to-tab-stop)
 
+(define-key evil-motion-state-map (kbd "*") 'evil-ex-search-unbounded-word-forward)
+(define-key evil-motion-state-map (kbd "#") 'evil-ex-search-unbounded-word-backward)
+(define-key evil-normal-state-map (kbd "C-k") 'evil-ex-nohighlight)
+
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
-;(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+(define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
+(define-key evil-motion-state-map (kbd "C-f") 'counsel-find-file)
 (define-key evil-normal-state-map (kbd "C-i") 'evil-jump-forward)
 (define-key evil-normal-state-map (kbd "C-=") 'evil-window-increase-height)
 (define-key evil-normal-state-map (kbd "C--") 'evil-window-decrease-height)
