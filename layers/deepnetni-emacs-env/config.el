@@ -22,7 +22,6 @@
 (setq tags-table-list nil)
 (setq debug-on-error nil)
 
-
 ;; #################### clean minor modes ###################
 ;(defvar hidden-minor-modes ; example, write your own list of hidden
 ;  '(lsp-mode            ; minor modes
