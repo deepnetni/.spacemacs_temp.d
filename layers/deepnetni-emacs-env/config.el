@@ -18,16 +18,56 @@
 (setq tags-table-list nil)
 (setq debug-on-error nil)
 
-(setq deepnetni-emacs-env--goto-center-hook
-      #'(evil-ex-search-next
-        evil-ex-search-previous
-        evil-goto-mark
-        evil-jump-backward
-        evil-jump-forward
-        pop-tag-mark))
+;; #################### clean minor modes ###################
+;(defvar hidden-minor-modes ; example, write your own list of hidden
+;  '(lsp-mode            ; minor modes
+;    helm-mode
+;    projectile-mode))
+;
+;(defun purge-minor-modes ()
+;  (interactive)
+;  (dolist (x hidden-minor-modes nil)
+;    (let ((trg (cdr (assoc x minor-mode-alist))))
+;      (when trg
+;        (setcar trg "")))))
+;
+;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
+
+;; #################### lsp ###################
+;(with-eval-after-load 'c-c++-mode (add-hook 'c++-mode-hook 'lsp))
+(with-eval-after-load 'lsp-mode
+  (add-hook 'c-mode-hook '(lsp-mode nil)))
+(with-eval-after-load 'lsp-mode
+  (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
+  ;(require 'dap-cpptools)
+  (yas-global-mode))
+
+;; #################### company backends part ###################
+(setq compandy-minimum-prefix-length 2)
+(setq company-tooltip-align-annotations t)
+(eval-after-load "company"
+  '(add-to-list 'company-backends 'company-anaconda))
+(eval-after-load "company"
+  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
+
+;; items in the completion list are sorted by frequency of use
+(setq company-transformers '(company-sort-by-occurrence))
+(setq company-selection-wrap-around t)
+
+;(add-hook 'python-mode-hook 'anaconda-mode)
 
 ;; enable emacs dameon to speed boot up
 ;(setq-default dotspacemacs-enable-server t)
+
+;; #################### self minor mode part ####################
+(setq deepnetni-emacs-env--goto-center-hook
+      #'(evil-ex-search-next
+         evil-ex-search-previous
+         evil-goto-mark
+         evil-jump-backward
+         evil-jump-forward
+         pop-tag-mark))
+
 
 ;; define minor mode
 (define-minor-mode deepnetni-mode
@@ -76,6 +116,10 @@
 
 (add-hook 'minibuffer-setup-hook #'(lambda ()
                                      (deepnetni-mode nil)))
+
+;(with-eval-after-load 'c-mode
+;  (lsp-diagnostics-mode nil)
+;  (lsp-modeline-diagnostics-mode nil))
 
 ;; ignore warning about cl is deprecated
 (setq byte-compile-warnings '(cl-functions))
