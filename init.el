@@ -35,7 +35,10 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(
      javascript
-     python
+     ;; need do `pip install python-language-server'
+     (python :variables python-backend 'lsp)
+     ;; use anaconda as python's backend
+     ;(python :variables python-backend 'anaconda)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -46,7 +49,7 @@ This function should only modify configuration layer settings."
      better-defaults
      emacs-lisp
      (git :variables git-magit-status-fullscreen t)
-     ;; lsp
+     (lsp :variables lsp-modeline-code-actions-enable nil)
      ;; markdown
      ;; multiple-cursors
      ;; org
@@ -55,13 +58,18 @@ This function should only modify configuration layer settings."
      ;;        shell-default-position 'bottom
      ;;        shell-default-shell 'eshell)
      themes-megapack
-     c-c++
-     deepnetni-emacs-env
+     ;c-c++
+     (c-c++ :variables
+            ;c-c++-adopt-subprojects t
+            ;c-c++-backend 'lsp-ccls
+            ;c-c++-lsp-enable-semantic-highlight t
+            )
      ;; spell-checking
      ;; syntax-checking
      ;; version-control
      ;; chinese
-     (treemacs :variables treemacs-use-filewatch-mode t))
+     (treemacs :variables treemacs-use-filewatch-mode t)
+     deepnetni-emacs-env)
 
 
    ;; List of additional packages that will be installed without being wrapped

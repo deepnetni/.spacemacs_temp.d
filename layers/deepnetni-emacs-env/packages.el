@@ -45,6 +45,7 @@
 ;; Other layers should rely on pre-init or post-init functions.
 (defconst deepnetni-emacs-env-packages
   '(counsel-etags
+    company-jedi
     cc-mode
     counsel
     ;ggtags
@@ -52,6 +53,7 @@
     hl-todo
     imenu-list
     javascript
+    lsp-mode
     ;magit
     ;org-bullets
     ;org-projectile
@@ -130,6 +132,18 @@ Each entry is either:
     (push "*.json" counsel-etags-ignore-filenames)
     (push "TAGS" counsel-etags-ignore-filenames)))
 
+(defun deepnetni-emacs-env/init-company-jedi ()
+  (use-package company-jedi
+    :defer t
+    :init
+    (add-hook 'python-mode-hook 'jedi:setup)
+    (add-hook 'python-mode-hook
+              '(lambda ()
+                 (add-to-list 'company-backends 'company-jedi)))
+    :config
+    (setq jedi:complete-on-dot t)
+    (setq jedi:use-shortcuts t)))
+
 (defun deepnetni-emacs-env/pre-init-cc-mode ()
   (spacemacs|use-package-add-hook cc-mode
     :post-init
@@ -201,6 +215,12 @@ Each entry is either:
   (spacemacs|use-package-add-hook javascript
     :post-init
     (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+
+(defun deepnetni-emacs-env/pre-init-lsp-mode ()
+  (spacemacs|use-package-add-hook lsp-mode
+    :post-init
+    (add-hook 'c-mode-hook #'(lambda ()
+                               (setq lsp-modeline-diagnostics-enable nil)))))
 
 (defun deepnetni-emacs-env/init-magit ()
   (use-package magit
