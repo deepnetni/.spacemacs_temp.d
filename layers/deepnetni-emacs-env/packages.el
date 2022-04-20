@@ -44,7 +44,10 @@
 ;; The layer that owns the package should define its init function.
 ;; Other layers should rely on pre-init or post-init functions.
 (defconst deepnetni-emacs-env-packages
-  '(counsel-etags
+  '((abbrev :location built-in)
+    counsel-etags
+    (company :location built-in)
+    company-anaconda
     company-jedi
     cc-mode
     counsel
@@ -57,8 +60,10 @@
     ;magit
     ;org-bullets
     ;org-projectile
+    (occur-mode :location built-in)
     projectile
     python
+    (vim-powerline :location built-in)
     yard-mode)
   "The list of Lisp packages required by the deepnetni-emacs-env layer.
 
@@ -90,11 +95,16 @@ Each entry is either:
 ;; In Spacemacs, layers are loaded in order of inclusion in the dotfile,
 ;; and packages are loaded in alphabetical order.
 
+(defun deepnetni-emacs-env/post-init-abbrev ()
+  (add-hook 'emacs-lisp-mode-hook 'abbrev-mode)
+  (define-abbrev-table 'global-abbrev-table '(("niye" "deepnetni-emacs-env")
+                                              ("niye/" "deepnetni-emacs-env/"))))
 
 (defun deepnetni-emacs-env/init-counsel-etags ()
   (use-package counsel-etags
     :defer t
     :ensure t
+    ;:pin melpa-cn
     :bind (:map evil-motion-state-map ("C-]" . counsel-etags-find-tag-at-point))
     :init
     (add-hook 'prog-mode-hook
@@ -132,9 +142,37 @@ Each entry is either:
     (push "*.json" counsel-etags-ignore-filenames)
     (push "TAGS" counsel-etags-ignore-filenames)))
 
+;(defun deepnetni-emacs-env/post-init-company ()
+;  (setq compandy-minimum-prefix-length 4)
+;  (setq company-tooltip-align-annotations t)
+;  ;; items in the completion list are sorted by frequency of use
+;  (setq company-transformers '(company-sort-by-occurrence))
+;  (setq company-selection-wrap-around t)
+;  ;(if (boundp 'company-backends)
+;  ;    (add-to-list 'company-backends '(company-anaconda :with company-capf))
+;  ;  (defvar company-backends '(company-anaconda :with company-capf)))
+;  (add-hook 'python-mode-hook 'anaconda-mode)
+;  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+
+(defun deepnetni-emacs-env/post-init-company ()
+    (setq compandy-minimum-prefix-length 4)
+    (setq company-tooltip-align-annotations t)
+    ;; items in the completion list are sorted by frequency of use
+    (setq company-transformers '(company-sort-by-occurrence))
+    (setq company-selection-wrap-around t))
+
+(defun deepnetni-emacs-env/pre-init-company-anaconda ()
+  (spacemacs|use-package-add-hook company-anaconda
+    :post-init
+    (add-hook 'python-mode-hook 'anaconda-mode)
+    (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+    (spacemacs|add-company-backends :backends (company-anaconda :with company-capf)
+                                    :modes python-mode)))
+
 (defun deepnetni-emacs-env/init-company-jedi ()
   (use-package company-jedi
     :defer t
+    :ensure t
     :init
     (add-hook 'python-mode-hook 'jedi:setup)
     (add-hook 'python-mode-hook
@@ -177,16 +215,15 @@ Each entry is either:
     (progn
       ;(modify-coding-system-alist 'process "ag" '(utf-8 . chinese-gbk-dos))
       (custom-set-variables
-       ; enable helm-follow-mode which will disable the helm-resume function
+       ;; enable helm-follow-mode which will disable the helm-resume function
        ;'(helm-follow-mode-persistent t)
        '(helm-ag-insert-at-point 'symbol)
-       '(helm-ag-base-command "ag --nocolor --nogroup -w")
+       ;'(helm-ag-base-command "ag --nocolor --nogroup -w")
        ;'(helm-ag-command-option "--all-text")
-       '(helm-ag-insert-at-point 'symbol)
        ;'(helm-ag--ignore-case)
        '(helm-ag-ignore-buffer-patterns '("\\.txt\\'" "\\.mkd\\'")))
-      (global-set-key (kbd "C-c a") 'helm-ag)
-      (global-set-key (kbd "C-l") 'helm-ag-project-root)
+      (global-set-key (kbd "C-c a") 'helm-ag-project-root)
+      (global-set-key (kbd "C-l") 'helm-do-ag-project-root)
       (global-set-key (kbd "C-j") 'helm-resume)
       (add-hook 'c-mode-hook 'helm-mode)
       )
@@ -244,6 +281,11 @@ Each entry is either:
       (global-set-key (kbd "C-c c") 'org-capture)
       (global-set-key (kbd "C-c n p") 'org-projectile-project-todo-completing-read))))
 
+(defun deepnetni-emacs-env/post-init-occur-mode ()
+  (define-key global-map (kbd "M-s o") 'deepnetni-emacs-env/occur-mode)
+  (evilified-state-evilify-map occur-mode-map
+    :mode occur-mode))
+
 ;:bind-keymap ("C-c p" . projectile-command-map)
 (defun deepnetni-emacs-env/pre-init-projectile ()
   (spacemacs|use-package-add-hook projectile
@@ -255,6 +297,9 @@ Each entry is either:
   (spacemacs|use-package-add-hook python
     :post-init
     (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+
+(defun deepnetni-emacs-env/post-init-vim-powerline ()
+  (setq-default powerline-default-separator 'arrow))
 
 (defun deepnetni-emacs-env/init-yard-mode ()
     (use-package yard-mode

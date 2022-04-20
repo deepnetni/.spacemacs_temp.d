@@ -35,6 +35,13 @@
 (define-key evil-motion-state-map (kbd "*") 'evil-ex-search-unbounded-word-forward)
 (define-key evil-motion-state-map (kbd "#") 'evil-ex-search-unbounded-word-backward)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-ex-nohighlight)
+(define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
+(define-key evil-motion-state-map (kbd "C-b") 'evil-first-non-blank)
+(define-key global-map (kbd "C-h C-f") 'find-function)
+(define-key global-map (kbd "C-h C-v") 'find-variable)
+(define-key global-map (kbd "C-h C-k") 'find-function-on-key)
+
+(spacemacs/set-leader-keys "b k" 'kill-matching-buffers)
 
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)

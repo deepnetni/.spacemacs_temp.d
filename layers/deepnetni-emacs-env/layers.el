@@ -26,3 +26,5 @@
 ;; the layers right away
 ;; This is a special case only for distribution layers.
 ;;(configuration-layer/declare-layer '(spacemacs-evil))
+
+;(configuration-layer/remove-layer 'xxx)

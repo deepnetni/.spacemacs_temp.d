@@ -2,3 +2,13 @@
   (dolist (tgt hook-list)
     (advice-add tgt :after (lambda (&rest _)
                              (evil-scroll-line-to-center (line-number-at-pos))))))
+
+(defun deepnetni-emacs-env/occur-mode ()
+  (interactive)
+  (push (if (region-active-p)
+            (buffer-substring-no-properties (region-beginning) (region-end))
+          (let ((sym (thing-at-point 'symbol)))
+            (when (stringp sym)
+              (regexp-quote sym))))
+        regexp-history)
+  (call-interactively 'occur))

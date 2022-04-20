@@ -1,7 +1,3 @@
-;; auto-mode-alist defined the major mode of files
-;; use find-fucntion, variable to search emacs codes
-;; use info to search basic information about emacs
-
 ;; setq is only works for local variables,
 ;; while seq-default works for global variables.
 (setq-default indent-tabs-mode nil)
@@ -38,6 +34,8 @@
 ;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
 
 ;; #################### lsp ###################
+;; use flycheck-verify-setup command to choose code check backends
+
 ;(with-eval-after-load 'c-c++-mode (add-hook 'c++-mode-hook 'lsp))
 ;(with-eval-after-load 'lsp-mode
 ;  (add-hook 'c-mode-hook '(lsp-mode nil)))
@@ -46,22 +44,13 @@
   ;(require 'dap-cpptools)
   (yas-global-mode))
 
-;; #################### company backends part ###################
-(setq compandy-minimum-prefix-length 2)
-(setq company-tooltip-align-annotations t)
-(eval-after-load "company"
-  '(add-to-list 'company-backends 'company-anaconda))
-(eval-after-load "company"
-  '(add-to-list 'company-backends '(company-anaconda :with company-capf)))
+;(add-hook 'python-mode-hook '(lambda ()
+;                               (set (make-local-variable 'company-backends)
+;                                    '(company-anaconda company-dabbrev company-ispell))))
 
-;; items in the completion list are sorted by frequency of use
-(setq company-transformers '(company-sort-by-occurrence))
-(setq company-selection-wrap-around t)
-
-;(add-hook 'python-mode-hook 'anaconda-mode)
-
+;; #################### daemon ####################
 ;; enable emacs dameon to speed boot up
-;(setq-default dotspacemacs-enable-server t)
+(setq-default dotspacemacs-enable-server t)
 
 ;; #################### self minor mode part ####################
 (setq deepnetni-emacs-env--goto-center-hook
