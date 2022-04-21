@@ -58,11 +58,11 @@
     javascript
     lsp-mode
     ;magit
-    ;org-bullets
-    ;org-projectile
     (occur-mode :location built-in)
+    ;paredit
     projectile
     python
+    slime
     (vim-powerline :location built-in)
     yard-mode)
   "The list of Lisp packages required by the deepnetni-emacs-env layer.

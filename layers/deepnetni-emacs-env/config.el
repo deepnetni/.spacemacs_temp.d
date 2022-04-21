@@ -1,23 +1,3 @@
-;; setq is only works for local variables,
-;; while seq-default works for global variables.
-(setq-default indent-tabs-mode nil)
-(setq-default tab-width 4)
-(setq-default dotspacemacs-scratch-mode 'emacs-lisp-mode)
-;; delete ^ in M-x
-(setq ivy-initial-inputs-alist nil)
-
-(defvaralias 'c-basic-offset 'tab-width)
-(defvaralias 'cperl-indent-level 'tab-width)
-
-(setq make-backup-files nil)
-(setq indent-tabs-mode nil)
-(setq c-default-style "k&r")
-(setq auto-completion-enable-snippets-in-popup t)
-(setq layouts-enable-autosave t)
-
-(setq tags-table-list nil)
-(setq debug-on-error nil)
-
 ;; #################### clean minor modes ###################
 ;(defvar hidden-minor-modes ; example, write your own list of hidden
 ;  '(lsp-mode            ; minor modes
@@ -32,6 +12,7 @@
 ;        (setcar trg "")))))
 ;
 ;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
+;(add-hook 'after-init-hook 'spacemacs/toggle-centered-point-on)
 
 ;; #################### lsp ###################
 ;; use flycheck-verify-setup command to choose code check backends
@@ -41,16 +22,11 @@
 ;  (add-hook 'c-mode-hook '(lsp-mode nil)))
 (with-eval-after-load 'lsp-mode
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
-  ;(require 'dap-cpptools)
   (yas-global-mode))
 
 ;(add-hook 'python-mode-hook '(lambda ()
 ;                               (set (make-local-variable 'company-backends)
 ;                                    '(company-anaconda company-dabbrev company-ispell))))
-
-;; #################### daemon ####################
-;; enable emacs dameon to speed boot up
-(setq-default dotspacemacs-enable-server t)
 
 ;; #################### self minor mode part ####################
 (setq deepnetni-emacs-env--goto-center-hook

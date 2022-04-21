@@ -65,6 +65,8 @@ This function should only modify configuration layer settings."
      ;       c-c++-lsp-enable-semantic-highlight t)
      spell-checking
      syntax-checking
+     (spacemacs-layouts :variables layouts-enable-autosave t
+                        layouts-autosave-delay 300)
      ;; version-control
      ;; chinese
      (treemacs :variables treemacs-use-filewatch-mode t)
@@ -247,8 +249,11 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          obsidian
+                         zenburn
+                         sanityinc-tomorrow-night
+                         noctilux
                          sanityinc-tomorrow-blue
-                         ; monokai
+                         monokai
                          solarized-dark
                          spacemacs-dark
                          spacemacs-light
@@ -271,10 +276,10 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("InputMono Medium"
-                               :size 15.0
+                               :size 16.0
                                :weight bold
                                :width normal
-                               :powerline-scale 1.3)
+                               :powerline-scale 0.6)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -596,22 +601,27 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (display-time-mode t)
-  ;(spacemacs|do-after-display-system-init
-  ; (spacemacs/set-default-font dotspacemacs-default-font))
-  ;(set-face-attribute
-  ; 'default nil
-  ; :font (font-spec :name "Input Mono Medium"
-  ;                  :weight 'normal
-  ;                  :width 'condensed
-  ;                  :slant 'normal
-  ;                  :size 15.0))
-  ;(dolist (charset '(kana han symbol cjk-misc bopomofo))
-  ;  (set-fontset-font (frame-parameter nil 'font) charset
-  ;                    (font-spec
-  ;                     :name "Input Mono"
-  ;                     :weight 'normal
-  ;                     :slant 'normal
-  ;                     :size 10.0)))
+  (global-centered-cursor-mode 1)
+  (setq-default indent-tabs-mode nil)
+  (setq-default tab-width 4)
+  (setq-default dotspacemacs-scratch-mode 'emacs-lisp-mode)
+  ;; delete ^ in M-x
+  (setq ivy-initial-inputs-alist nil)
+
+  (defvaralias 'c-basic-offset 'tab-width)
+  (defvaralias 'cperl-indent-level 'tab-width)
+
+  (setq make-backup-files nil)
+  (setq indent-tabs-mode nil)
+  (setq c-default-style "k&r")
+  (setq auto-completion-enable-snippets-in-popup t)
+  (setq layouts-enable-autosave t)
+
+  (setq tags-table-list nil)
+  (setq debug-on-error nil)
+
+  ; search don't go to beginning of file
+  (setq isearch-wrap-function #'ignore)
   ;(menu-bar-mode 1)
 
   ;; magit-auto-company

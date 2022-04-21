@@ -41,7 +41,9 @@
 (define-key global-map (kbd "C-h C-v") 'find-variable)
 (define-key global-map (kbd "C-h C-k") 'find-function-on-key)
 
-(spacemacs/set-leader-keys "b k" 'kill-matching-buffers)
+(spacemacs/set-leader-keys
+  "b k" 'kill-matching-buffers
+  "b l" 'ibuffer)
 
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)
@@ -51,6 +53,7 @@
 (define-key evil-normal-state-map (kbd "C--") 'evil-window-decrease-height)
 (define-key evil-normal-state-map (kbd "C-.") 'evil-window-increase-width)
 (define-key evil-normal-state-map (kbd "C-,") 'evil-window-decrease-width)
+(define-key evil-normal-state-map (kbd "C-w g") 'spacemacs/toggle-golden-ratio)
 (define-key evil-normal-state-map (kbd "M-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "C-w C-h") 'evil-window-left)
 (define-key evil-normal-state-map (kbd "M-l") 'evil-window-right)
