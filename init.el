@@ -622,12 +622,15 @@ before packages are loaded."
 
   ; search don't go to beginning of file
   (setq isearch-wrap-function #'ignore)
+  (setq evil-search-wrap nil)
   ;(menu-bar-mode 1)
 
   ;; magit-auto-company
   ;; this is the folder where you keep all your git-controlled projects
   ;(setq magit-repository-directories '("d:/project/"))
   ;(global-git-commit-mode t)
+
+  (deepnetni-mode t)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

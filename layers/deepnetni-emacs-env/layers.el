@@ -27,4 +27,4 @@
 ;; This is a special case only for distribution layers.
 ;;(configuration-layer/declare-layer '(spacemacs-evil))
 
-;(configuration-layer/remove-layer 'xxx)
+(configuration-layer/remove-layer 'github)

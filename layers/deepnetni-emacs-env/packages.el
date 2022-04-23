@@ -62,7 +62,7 @@
     ;paredit
     projectile
     python
-    slime
+    ;slime
     (vim-powerline :location built-in)
     yard-mode)
   "The list of Lisp packages required by the deepnetni-emacs-env layer.
@@ -300,6 +300,18 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/post-init-vim-powerline ()
   (setq-default powerline-default-separator 'arrow))
+
+;(defun deepnetni-emacs-env/init-slime ()
+;  (use-package slime
+;    :defer t
+;    :ensure t
+;    :init
+;    (add-hook 'lisp-mode-hook (lambda ()
+;                                (unless (featurep 'slime)
+;                                  (load (expand-file-name "~/quicklisp/slime-helper.el"))
+;                                  (require 'slime-autoloads)
+;                                  (normal-mode))))
+;    (setq inferior-lisp-program "sbcl")))
 
 (defun deepnetni-emacs-env/init-yard-mode ()
     (use-package yard-mode

@@ -37,7 +37,6 @@
          evil-jump-forward
          pop-tag-mark))
 
-
 ;; define minor mode
 (define-minor-mode deepnetni-mode
   "A minor mode for deepnetni to override conflict keymaps."
@@ -51,11 +50,10 @@
     map)
   "deepnet ni minor mode keybindings")
 
-(deepnetni-mode t)
-
-(add-hook 'deepnetni-mode-hook '(lambda ()
-                                        (deepnetni-emacs-env//goto-line-center
-                                         deepnetni-emacs-env--goto-center-hook)))
+(add-hook 'deepnetni-mode-hook
+          '(lambda ()
+             (deepnetni-emacs-env//goto-line-center
+              deepnetni-emacs-env--goto-center-hook)))
 
 (add-hook 'deepnetni-mode-hook
           '(lambda ()
