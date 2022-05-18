@@ -32,8 +32,8 @@
 (define-key evil-insert-state-map (kbd "TAB") 'yas-expand)
 (define-key evil-insert-state-map (kbd "M-i") 'tab-to-tab-stop)
 
-(define-key evil-motion-state-map (kbd "*") 'evil-ex-search-unbounded-word-forward)
-(define-key evil-motion-state-map (kbd "#") 'evil-ex-search-unbounded-word-backward)
+(define-key evil-motion-state-map (kbd "*") 'evil-ex-search-word-forward)
+(define-key evil-motion-state-map (kbd "#") 'evil-ex-search-word-backward)
 (define-key evil-normal-state-map (kbd "C-k") 'evil-ex-nohighlight)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-b") 'evil-first-non-blank)

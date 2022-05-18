@@ -59,6 +59,7 @@ This function should only modify configuration layer settings."
      ;;        shell-default-shell 'eshell)
      themes-megapack
      c-c++
+     cmake
      ;(c-c++ :variables
      ;       c-c++-adopt-subprojects t
      ;       c-c++-backend 'lsp-ccls

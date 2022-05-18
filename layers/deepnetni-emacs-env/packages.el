@@ -49,6 +49,7 @@
     (company :location built-in)
     company-anaconda
     company-jedi
+    cmake-mode
     cc-mode
     counsel
     ;ggtags
@@ -181,6 +182,11 @@ Each entry is either:
     :config
     (setq jedi:complete-on-dot t)
     (setq jedi:use-shortcuts t)))
+
+(defun deepnetni-emacs-env/pre-init-cmake-mode ()
+  (spacemacs|use-package-add-hook cmake-mode
+    :post-init
+    (add-hook 'cmake-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
 
 (defun deepnetni-emacs-env/pre-init-cc-mode ()
   (spacemacs|use-package-add-hook cc-mode
