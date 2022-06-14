@@ -30,9 +30,9 @@
 
 ;; #################### self minor mode part ####################
 (setq deepnetni-emacs-env--goto-center-hook
-      #'(evil-ex-search-next
-         evil-ex-search-previous
-         evil-goto-mark
+      #'(evil-goto-mark
+         ;evil-ex-search-next
+         ;evil-ex-search-previous
          evil-jump-backward
          evil-jump-forward
          pop-tag-mark))

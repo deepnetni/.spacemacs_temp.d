@@ -33,7 +33,7 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(
+   '(systemd
      javascript
      ;; need do `pip install python-language-server'
      ;(python :variables python-backend 'lsp)
@@ -601,8 +601,6 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
-  (display-time-mode t)
-  (global-centered-cursor-mode 1)
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 4)
   (setq-default dotspacemacs-scratch-mode 'emacs-lisp-mode)
@@ -632,6 +630,8 @@ before packages are loaded."
   ;(global-git-commit-mode t)
 
   (deepnetni-mode t)
+  (display-time-mode t)
+  (global-centered-cursor-mode -1)
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
