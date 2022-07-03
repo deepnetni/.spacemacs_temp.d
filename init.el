@@ -33,7 +33,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(systemd
+   '(windows-scripts
+     systemd
      javascript
      ;; need do `pip install python-language-server'
      ;(python :variables python-backend 'lsp)
@@ -89,7 +90,8 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(tern)
+   dotspacemacs-excluded-packages '(tern
+                                    )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -277,7 +279,7 @@ It should only modify the values of Spacemacs settings."
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
    dotspacemacs-default-font '("InputMono Medium"
-                               :size 16.0
+                               :size 14.0
                                :weight bold
                                :width normal
                                :powerline-scale 0.6)
@@ -632,6 +634,8 @@ before packages are loaded."
   (deepnetni-mode t)
   (display-time-mode t)
   (global-centered-cursor-mode -1)
+  (custom-set-faces
+   '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will

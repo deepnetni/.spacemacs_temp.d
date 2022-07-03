@@ -57,7 +57,7 @@
 
 (add-hook 'deepnetni-mode-hook
           '(lambda ()
-             (global-undo-tree-mode 0)
+             (global-undo-tree-mode 1)
              (setenv "LANG" "zh_CN.UTF-8")
              (when (eq system-type 'windows-nt)
                (setq-default process-coding-system-alist
