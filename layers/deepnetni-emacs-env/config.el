@@ -1,15 +1,19 @@
 ;; #################### clean minor modes ###################
 ;(defvar hidden-minor-modes ; example, write your own list of hidden
-;  '(hide-ifdef-mode            ; minor modes
+;  '(helm-mode            ; minor modes
+;    yas-minor-mode
+;    company-mode
+;    spacemacs-whitespace-cleanup-mode
+;    flyspell-mode
 ;    ))
-;
+;;
 ;(defun purge-minor-modes ()
 ;  (interactive)
 ;  (dolist (x hidden-minor-modes nil)
 ;    (let ((trg (cdr (assoc x minor-mode-alist))))
 ;      (when trg
 ;        (setcar trg "")))))
-;
+;;
 ;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
 ;(add-hook 'after-init-hook 'spacemacs/toggle-centered-point-on)
 

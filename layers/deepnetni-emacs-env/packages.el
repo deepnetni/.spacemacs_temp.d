@@ -103,7 +103,7 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-counsel-etags ()
   (use-package counsel-etags
-    :diminish
+    :delight
     :defer t
     :ensure t
     ;:pin melpa-cn
@@ -173,7 +173,7 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-company-jedi ()
   (use-package company-jedi
-    :diminish
+    :delight
     :defer t
     :ensure t
     :init
@@ -217,7 +217,7 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-helm-ag ()
   (use-package helm-ag
-    :diminish
+    :delight
     :defer t
     :ensure t
     :init
@@ -251,7 +251,7 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-imenu-list ()
   (use-package imenu-list
-    :diminish
+    :delight
     :defer t
     :init
     (global-set-key (kbd "C-'") #'imenu-list-smart-toggle)
@@ -271,13 +271,13 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-magit ()
   (use-package magit
-    :diminish
+    :delight
     :defer t
     ))
 
 (defun deepnetni-emacs-env/init-org-bullets ()
   (use-package org-bullets
-    :diminish
+    :delight
     :ensure t
     :defer t
     :init
@@ -327,7 +327,7 @@ Each entry is either:
 
 (defun deepnetni-emacs-env/init-yard-mode ()
     (use-package yard-mode
-      :diminish
+      :delight
       :defer t
       :init
       (progn

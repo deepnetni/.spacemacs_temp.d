@@ -639,6 +639,8 @@ before packages are loaded."
   (custom-set-faces
    '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
 
+  (spaceline-toggle-minor-modes-off)
+
   ;(setq hide-ifdef-initially t)
   ;(add-hook 'c-mode-common-hook
   ;          (lambda ()
