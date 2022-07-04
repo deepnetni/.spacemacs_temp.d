@@ -23,7 +23,8 @@
 ;;(define-key projectile-mode-map (kbd "C-c p") 'projectile-command-map)
 
 (define-key global-map (kbd "C-k") nil)
-;; =================== evil =====================
+
+;; ============================== evil ==============================
 
 (define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char)
 (define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
@@ -63,5 +64,11 @@
 ;(define-key evil-visual-state-map (kbd "C-c") (progn ()))
 ;; (global-set-key [f8] 'neotree-toggle)
 
-; =================== counsel-etags ===============
+;; ============================== counsel-etags ==============================
 (define-key evil-motion-state-map (kbd "C-t") 'pop-tag-mark)
+
+;; ============================== ibuffer ==============================
+(define-key ibuffer-mode-map (kbd "j") 'ibuffer-forward-line)
+(define-key ibuffer-mode-map (kbd "k") 'ibuffer-backward-line)
+(define-key ibuffer-mode-map (kbd "C-k") 'ibuffer-do-kill-lines)
+(define-key ibuffer-mode-map (kbd "M-h") 'evil-window-left)

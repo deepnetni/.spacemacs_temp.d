@@ -1,8 +1,7 @@
 ;; #################### clean minor modes ###################
 ;(defvar hidden-minor-modes ; example, write your own list of hidden
-;  '(lsp-mode            ; minor modes
-;    helm-mode
-;    projectile-mode))
+;  '(hide-ifdef-mode            ; minor modes
+;    ))
 ;
 ;(defun purge-minor-modes ()
 ;  (interactive)

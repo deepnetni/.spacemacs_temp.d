@@ -35,7 +35,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(windows-scripts
      systemd
-     javascript
+     ;; javascript
      ;; need do `pip install python-language-server'
      ;(python :variables python-backend 'lsp)
      ;; use anaconda as python's backend
@@ -66,7 +66,7 @@ This function should only modify configuration layer settings."
      ;       c-c++-backend 'lsp-ccls
      ;       c-c++-lsp-enable-semantic-highlight t)
      spell-checking
-     syntax-checking
+     ;;syntax-checking
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
      ;; version-control
@@ -90,7 +90,9 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(tern
+   dotspacemacs-excluded-packages '(
+                                    tern
+                                    lsp
                                     )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -636,6 +638,13 @@ before packages are loaded."
   (global-centered-cursor-mode -1)
   (custom-set-faces
    '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
+
+  ;(setq hide-ifdef-initially t)
+  ;(add-hook 'c-mode-common-hook
+  ;          (lambda ()
+  ;            (setq hide-ifdef-shadow t)
+  ;            (hide-ifdef-mode t)
+  ;            (hide-ifdefs)))
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
