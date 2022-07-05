@@ -1,20 +1,25 @@
 ;; #################### clean minor modes ###################
 ;(defvar hidden-minor-modes ; example, write your own list of hidden
-;  '(lsp-mode            ; minor modes
-;    helm-mode
-;    projectile-mode))
-;
+;  '(helm-mode            ; minor modes
+;    yas-minor-mode
+;    company-mode
+;    spacemacs-whitespace-cleanup-mode
+;    flyspell-mode
+;    ))
+;;
 ;(defun purge-minor-modes ()
 ;  (interactive)
 ;  (dolist (x hidden-minor-modes nil)
 ;    (let ((trg (cdr (assoc x minor-mode-alist))))
 ;      (when trg
 ;        (setcar trg "")))))
-;
+;;
 ;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
 ;(add-hook 'after-init-hook 'spacemacs/toggle-centered-point-on)
 
-;; #################### lsp ###################
+;; ##############################################################
+;; #################### lsp ####################
+;; ##############################################################
 ;; use flycheck-verify-setup command to choose code check backends
 
 ;(with-eval-after-load 'c-c++-mode (add-hook 'c++-mode-hook 'lsp))
@@ -28,7 +33,9 @@
 ;                               (set (make-local-variable 'company-backends)
 ;                                    '(company-anaconda company-dabbrev company-ispell))))
 
+;; ##############################################################
 ;; #################### self minor mode part ####################
+;; ##############################################################
 (setq deepnetni-emacs-env--goto-center-hook
       #'(evil-goto-mark
          ;evil-ex-search-next
@@ -93,3 +100,4 @@
 (eval-after-load 'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
 (setq python-indent-guess-indent-offset t)
 (setq python-indent-guess-indent-offset-verbose nil)
+(setq tags-add-tables nil)
