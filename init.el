@@ -28,8 +28,8 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   ;; dotspacemacs-configuration-layer-path '("C:\\Users\\niyel\\AppData\\Roaming\\.spacemacs.d\\")
-   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
+   dotspacemacs-configuration-layer-path '("C:\\Users\\niye\\AppData\\Roaming\\.spacemacs.d\\")
+   ;; dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -65,7 +65,7 @@ This function should only modify configuration layer settings."
      ;       c-c++-adopt-subprojects t
      ;       c-c++-backend 'lsp-ccls
      ;       c-c++-lsp-enable-semantic-highlight t)
-     spell-checking
+     ;spell-checking
      ;;syntax-checking
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
@@ -93,6 +93,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-excluded-packages '(
                                     tern
                                     lsp
+                                    vi-tilde-fringe
                                     )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -254,7 +255,7 @@ It should only modify the values of Spacemacs settings."
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
                          obsidian
-                         zenburn
+                         ;;zenburn
                          sanityinc-tomorrow-night
                          noctilux
                          sanityinc-tomorrow-blue
