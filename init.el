@@ -93,6 +93,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-excluded-packages '(
                                     tern
                                     lsp
+                                    vi-tilde-fringe
                                     )
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
