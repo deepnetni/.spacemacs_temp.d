@@ -38,6 +38,9 @@
 (define-key evil-normal-state-map (kbd "C-k") 'evil-ex-nohighlight)
 (define-key evil-motion-state-map (kbd "C-e") 'evil-end-of-line)
 (define-key evil-motion-state-map (kbd "C-b") 'evil-first-non-blank)
+(define-key evil-motion-state-map (kbd "H") 'evil-first-non-blank)
+(define-key evil-motion-state-map (kbd "L") 'evil-end-of-line)
+
 (define-key global-map (kbd "C-h C-f") 'find-function)
 (define-key global-map (kbd "C-h C-v") 'find-variable)
 (define-key global-map (kbd "C-h C-k") 'find-function-on-key)
@@ -72,3 +75,6 @@
 (define-key ibuffer-mode-map (kbd "k") 'ibuffer-backward-line)
 (define-key ibuffer-mode-map (kbd "C-k") 'ibuffer-do-kill-lines)
 (define-key ibuffer-mode-map (kbd "M-h") 'evil-window-left)
+
+
+;; ============================== elisp ==============================
