@@ -29,7 +29,7 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
 
-;(add-hook 'python-mode-hook '(lambda ()
+;(add-hook 'python-mode-hook (lambda ()
 ;                               (set (make-local-variable 'company-backends)
 ;                                    '(company-anaconda company-dabbrev company-ispell))))
 
@@ -50,6 +50,16 @@
   :init-value t
   :lighter "")
 
+;; ignore warning about cl is deprecated
+(setq byte-compile-warnings '(cl-functions))
+(eval-after-load 'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
+(setq python-indent-guess-indent-offset t)
+(setq python-indent-guess-indent-offset-verbose nil)
+(setq tags-add-tables nil)
+
+(advice-add #'undo-tree-load-history :around #'deepnetni-emacs-env/suppress-undo-tree-load-history)
+(advice-add #'undo-tree-save-history :around #'deepnetni-emacs-env/suppress-undo-tree-save-history)
+
 ;; override keybinds defined after deepnetni packages
 (defvar deepnetni-mode-map
   (let ((map (make-sparse-keymap)))
@@ -58,12 +68,12 @@
   "deepnet ni minor mode keybindings")
 
 (add-hook 'deepnetni-mode-hook
-          '(lambda ()
+          (lambda ()
              (deepnetni-emacs-env//goto-line-center
               deepnetni-emacs-env--goto-center-hook)))
 
 (add-hook 'deepnetni-mode-hook
-          '(lambda ()
+          (lambda ()
              (global-undo-tree-mode 1)
              (setenv "LANG" "zh_CN.UTF-8")
              (when (eq system-type 'windows-nt)
@@ -88,16 +98,8 @@
              (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
              (setq default-buffer-file-coding-system 'utf-8)))
 
-(add-hook 'minibuffer-setup-hook #'(lambda ()
-                                     (deepnetni-mode nil)))
+(add-hook 'minibuffer-setup-hook (lambda () (deepnetni-mode nil)))
 
 ;(with-eval-after-load 'c-mode
 ;  (lsp-diagnostics-mode nil)
 ;  (lsp-modeline-diagnostics-mode nil))
-
-;; ignore warning about cl is deprecated
-(setq byte-compile-warnings '(cl-functions))
-(eval-after-load 'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
-(setq python-indent-guess-indent-offset t)
-(setq python-indent-guess-indent-offset-verbose nil)
-(setq tags-add-tables nil)
