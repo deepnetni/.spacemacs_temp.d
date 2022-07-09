@@ -179,7 +179,7 @@ Each entry is either:
     :init
     (add-hook 'python-mode-hook 'jedi:setup)
     (add-hook 'python-mode-hook
-              '(lambda ()
+              (lambda ()
                  (add-to-list 'company-backends 'company-jedi)))
     :config
     (setq jedi:complete-on-dot t)
@@ -188,18 +188,18 @@ Each entry is either:
 (defun deepnetni-emacs-env/pre-init-cmake-mode ()
   (spacemacs|use-package-add-hook cmake-mode
     :post-init
-    (add-hook 'cmake-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+    (add-hook 'cmake-mode-hook (lambda () (modify-syntax-entry ?_ "w")))))
 
 (defun deepnetni-emacs-env/pre-init-cc-mode ()
   (spacemacs|use-package-add-hook cc-mode
     :post-init
-    (add-hook 'c-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+    (add-hook 'c-mode-hook (lambda () (modify-syntax-entry ?_ "w")))))
 
 (defun deepnetni-emacs-env/pre-init-counsel ()
   (spacemacs|use-package-add-hook counsel
     :post-init
     (progn
-      (add-hook 'c-mode-hook #'(lambda ()
+      (add-hook 'c-mode-hook (lambda ()
                                  (define-key c-mode-map (kbd "C-c C-c") 'counsel-ag)))
       ;(global-set-key (kbd "C-c j") 'counsel-git-grep)
       ; use projectile to get file C-p
@@ -261,12 +261,12 @@ Each entry is either:
 (defun deepnetni-emacs-env/pre-init-javascript ()
   (spacemacs|use-package-add-hook javascript
     :post-init
-    (add-hook 'js2-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+    (add-hook 'js2-mode-hook (lambda () (modify-syntax-entry ?_ "w")))))
 
 (defun deepnetni-emacs-env/pre-init-lsp-mode ()
   (spacemacs|use-package-add-hook lsp-mode
     :post-init
-    (add-hook 'c-mode-hook #'(lambda ()
+    (add-hook 'c-mode-hook (lambda ()
                                (setq lsp-modeline-diagnostics-enable nil)))))
 
 (defun deepnetni-emacs-env/init-magit ()
@@ -308,7 +308,7 @@ Each entry is either:
 (defun deepnetni-emacs-env/pre-init-python ()
   (spacemacs|use-package-add-hook python
     :post-init
-    (add-hook 'python-mode-hook #'(lambda () (modify-syntax-entry ?_ "w")))))
+    (add-hook 'python-mode-hook (lambda () (modify-syntax-entry ?_ "w")))))
 
 (defun deepnetni-emacs-env/post-init-vim-powerline ()
   (setq-default powerline-default-separator 'arrow))
