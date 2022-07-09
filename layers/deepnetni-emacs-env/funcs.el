@@ -15,7 +15,7 @@
 
 ;; Suppress the message saying that the undo history file was
 ;; saved that happens every single time you create a new file.
-(defun deepnetni-emacs-env/suppress-undo-tree-save_history
+(defun deepnetni-emacs-env/suppress-undo-tree-save-history
     (undo-tree-save-history &rest args)
   (let ((inhibit-message t))
     (apply undo-tree-save-history args)
