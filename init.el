@@ -65,8 +65,8 @@ This function should only modify configuration layer settings."
      ;       c-c++-adopt-subprojects t
      ;       c-c++-backend 'lsp-ccls
      ;       c-c++-lsp-enable-semantic-highlight t)
-     spell-checking
-     ;;syntax-checking
+     ;spell-checking
+     ;syntax-checking
      (spacemacs-layouts :variables layouts-enable-autosave t
                         layouts-autosave-delay 300)
      ;; version-control
@@ -201,6 +201,13 @@ It should only modify the values of Spacemacs settings."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
+
+   ;; Scale factor controls the scaling (size) of the startup banner. Default
+   ;; value is `auto' for scaling the logo automatically to fit all buffer
+   ;; contents, to a maximum of the full image height and a minimum of 3 line
+   ;; heights. If set to a number (int or float) it is used as a constant
+   ;; scaling factor for the default logo size.
+   dotspacemacs-startup-banner-scale 'auto
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
@@ -354,7 +361,7 @@ It should only modify the values of Spacemacs settings."
 
    ;; Which-key delay in seconds. The which-key buffer is the popup listing
    ;; the commands bound to the current keystroke sequence. (default 0.4)
-   dotspacemacs-which-key-delay 1.0
+   dotspacemacs-which-key-delay 0.5
 
    ;; Which-key frame position. Possible values are `right', `bottom' and
    ;; `right-then-bottom'. right-then-bottom tries to display the frame to the
@@ -647,8 +654,11 @@ before packages are loaded."
   ;            (setq hide-ifdef-shadow t)
   ;            (hide-ifdef-mode t)
   ;            (hide-ifdefs)))
+  (setq-default ispell-program-name "aspell")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
 (load custom-file 'no-error 'no-message)
+
+;; auto-generate custom variable definitions.

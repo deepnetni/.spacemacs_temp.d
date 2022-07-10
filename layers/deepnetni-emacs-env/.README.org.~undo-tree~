@@ -1,5 +1,0 @@
-(undo-tree-save-format-version . 1)
-"10b9b46ab341121ecc7554589ad24b712156059b"
-[nil nil nil nil (25160 1042 727366 0) 0 nil]
-([nil current ((#("%LAYER_NAME%" 0 12 (fontified nil)) . -839) (851 . 870) (#("%LAYER_NAME%" 0 12 (fontified nil)) . -358) (370 . 389) (#("%LAYER_NAME%" 0 12 (fontified nil)) . -10) (t 25160 1042 0 0) (22 . 41) (t 25160 1042 0 0)) nil (25160 1042 727361 0) 0 nil])
-nil
