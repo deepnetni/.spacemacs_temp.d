@@ -659,6 +659,10 @@ before packages are loaded."
 
 ;; Do not write anything past this comment. This is where Emacs will
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))
+;; create custom-file if it is not exist
+;(unless (file-exists-p custom-file)
+;  (shell-command (concat "touch " custom-file)))
+(write-region "" nil custom-file)
 (load custom-file 'no-error 'no-message)
 
 ;; auto-generate custom variable definitions.
