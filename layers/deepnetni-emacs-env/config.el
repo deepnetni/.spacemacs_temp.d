@@ -30,8 +30,8 @@
   (yas-global-mode))
 
 ;(add-hook 'python-mode-hook (lambda ()
-;                               (set (make-local-variable 'company-backends)
-;                                    '(company-anaconda company-dabbrev company-ispell))))
+; (set (make-local-variable 'company-backends)
+; '(company-anaconda company-dabbrev company-ispell))))
 
 ;; ##############################################################
 ;; #################### self minor mode part ####################
@@ -50,15 +50,10 @@
   :init-value t
   :lighter "")
 
-;; ignore warning about cl is deprecated
-(setq byte-compile-warnings '(cl-functions))
-(eval-after-load 'dired-quick-sort '(setq dired-quick-sort-suppress-setup-warning t))
-(setq python-indent-guess-indent-offset t)
-(setq python-indent-guess-indent-offset-verbose nil)
-(setq tags-add-tables nil)
-
-(advice-add #'undo-tree-load-history :around #'deepnetni-emacs-env/suppress-undo-tree-load-history)
-(advice-add #'undo-tree-save-history :around #'deepnetni-emacs-env/suppress-undo-tree-save-history)
+(advice-add #'undo-tree-load-history
+            :around #'deepnetni-emacs-env/suppress-undo-tree-load-history)
+(advice-add #'undo-tree-save-history
+            :around #'deepnetni-emacs-env/suppress-undo-tree-save-history)
 
 ;; override keybinds defined after deepnetni packages
 (defvar deepnetni-mode-map
@@ -74,32 +69,42 @@
 
 (add-hook 'deepnetni-mode-hook
           (lambda ()
-             (global-undo-tree-mode 1)
-             (setenv "LANG" "zh_CN.UTF-8")
-             (when (eq system-type 'windows-nt)
-               (setq-default process-coding-system-alist
-                             '(("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
-                               ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
-                               ("cmd" gbk-dos . gbk-dos)
-                               ("diff" utf-8-dos . gbk-dos)
-                               ("*" utf-8-dos . gbk-dos))))
-             (set-charset-priority 'unicode)
-             ;(prefer-coding-system 'utf-8)
-             ;(modify-coding-system-alist 'process "*" 'utf-8-unix)
-             (setq-default buffer-file-coding-system 'utf-8-unix)
-             (set-buffer-file-coding-system 'utf-8-unix)
-             (set-file-name-coding-system 'utf-8-unix)
-             (set-default-coding-systems 'utf-8-unix)
-             (set-keyboard-coding-system 'utf-8-unix)
-             (set-terminal-coding-system 'utf-8-unix)
-             ;(set-language-environment 'Chinese-GBK)
-             (set-language-environment "UTF-8")
-             (setq locale-coding-system 'utf-8-unix)
-             (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
-             (setq default-buffer-file-coding-system 'utf-8)))
+            ;; ignore warning that cl is deprecated xxx
+            (setq byte-compile-warnings '(cl-functions))
+            (setq python-indent-guess-indent-offset t)
+            (setq python-indent-guess-indent-offset-verbose nil)
+            (setq tags-add-tables nil)
+            (eval-after-load 'dired-quick-sort
+              '(setq dired-quick-sort-suppress-setup-warning t))
+            (spaceline-toggle-minor-modes-off)
+            (global-undo-tree-mode 1))
+          )
+
+;; settings about coding language
+;(add-hook 'deepnetni-mode-hook
+;          (lambda ()
+;             (global-undo-tree-mode 1)
+;             (setenv "LANG" "zh_CN.UTF-8")
+;             (when (eq system-type 'windows-nt)
+;               (setq-default process-coding-system-alist
+;                             '(("[pP][lL][iI][nN][kK]" utf-8-dos . gbk-dos)
+;                               ("[cC][mM][dD][pP][rR][oO][xX][yY]" utf-8-dos . gbk-dos)
+;                               ("cmd" gbk-dos . gbk-dos)
+;                               ("diff" utf-8-dos . gbk-dos)
+;                               ("*" utf-8-dos . gbk-dos))))
+;             (set-charset-priority 'unicode)
+;             ;(prefer-coding-system 'utf-8)
+;             ;(modify-coding-system-alist 'process "*" 'utf-8-unix)
+;             (setq-default buffer-file-coding-system 'utf-8-unix)
+;             (set-buffer-file-coding-system 'utf-8-unix)
+;             (set-file-name-coding-system 'utf-8-unix)
+;             (set-default-coding-systems 'utf-8-unix)
+;             (set-keyboard-coding-system 'utf-8-unix)
+;             (set-terminal-coding-system 'utf-8-unix)
+;             ;(set-language-environment 'Chinese-GBK)
+;             (set-language-environment "UTF-8")
+;             (setq locale-coding-system 'utf-8-unix)
+;             (setq default-process-coding-system '(utf-8-unix . utf-8-unix))
+;             (setq default-buffer-file-coding-system 'utf-8)))
 
 (add-hook 'minibuffer-setup-hook (lambda () (deepnetni-mode nil)))
-
-;(with-eval-after-load 'c-mode
-;  (lsp-diagnostics-mode nil)
-;  (lsp-modeline-diagnostics-mode nil))

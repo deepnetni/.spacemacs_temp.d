@@ -28,8 +28,7 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '("C:\\Users\\niye\\AppData\\Roaming\\.spacemacs.d\\")
-   ;; dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
+   dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
@@ -582,19 +581,19 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
     '(("melpa-cn" . "http://mirrors.tuna.tsinghua.edu.cn/elpa/melpa/")
       ("gnu-cn"   . "http://mirrors.tuna.tsinghua.edu.cn/elpa/gnu/")
       ("nongnu" . "https://mirrors.tuna.tsinghua.edu.cn/elpa/nongnu/")))
+
   (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
     '(add-to-list 'company-backends '(company-irony company-yasnippet)))
-  ;;(add-hook 'c-mode-hook 'irony-mode)
-  ;;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  ;(add-hook 'c-mode-hook 'irony-mode)
+  ;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (add-hook 'dired-mode-hook 'auto-revert-mode)
   (defalias 'which-key-declare-prefixes 'ignore)
   (defalias 'which-key-declare-prefixes-for-mode 'ignore)
   (setq tramp-ssh-controlmaster-options
     "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; init auto-dim-other-buffers
-  ;;(add-hook 'after-init-hook (lambda ()
-  ;;                             (auto-dim-other-buffers-mode t)))
+  ;(add-hook 'after-init-hook (lambda () (auto-dim-other-buffers-mode t)))
 )
 
 
@@ -612,6 +611,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
   (setq-default indent-tabs-mode nil)
   (setq-default tab-width 4)
   (setq-default dotspacemacs-scratch-mode 'emacs-lisp-mode)
@@ -640,13 +640,12 @@ before packages are loaded."
   ;(setq magit-repository-directories '("d:/project/"))
   ;(global-git-commit-mode t)
 
-  (deepnetni-mode t)
   (display-time-mode t)
+  ;; the cursor always remains in the centere of the file when set
   (global-centered-cursor-mode -1)
-  (custom-set-faces
-   '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
+  (custom-set-faces '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
 
-  (spaceline-toggle-minor-modes-off)
+  (deepnetni-mode t)
 
   ;(setq hide-ifdef-initially t)
   ;(add-hook 'c-mode-common-hook
@@ -654,7 +653,7 @@ before packages are loaded."
   ;            (setq hide-ifdef-shadow t)
   ;            (hide-ifdef-mode t)
   ;            (hide-ifdefs)))
-  (setq-default ispell-program-name "aspell")
+  ;(setq-default ispell-program-name "aspell")
 )
 
 ;; Do not write anything past this comment. This is where Emacs will
