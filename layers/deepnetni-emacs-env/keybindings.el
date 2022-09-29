@@ -24,6 +24,9 @@
 
 (define-key global-map (kbd "C-k") nil)
 
+;; ============================== python ==============================
+;(define-key python-mode-map (kbd "C-j") 'helm-resume)
+
 ;; ============================== evil ==============================
 
 (define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char)

@@ -32,7 +32,8 @@ This function should only modify configuration layer settings."
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(windows-scripts
+   '(markdown
+     windows-scripts
      systemd
      ;; javascript
      ;; need do `pip install python-language-server'
