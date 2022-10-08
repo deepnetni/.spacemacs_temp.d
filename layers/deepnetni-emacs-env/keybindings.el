@@ -29,8 +29,14 @@
 
 ;; ============================== evil ==============================
 
-(define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char)
-(define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
+(define-key evil-motion-state-map (kbd "b") 'backward-word)
+;(define-key evil-motion-state-map (kbd "w") 'forward-word)
+(define-key evil-motion-state-map (kbd "M-u") 'evil-window-top)
+(define-key evil-motion-state-map (kbd "M-n") 'evil-window-bottom)
+;(define-key evil-insert-state-map (kbd "C-h") 'evil-backward-char)
+;(define-key evil-insert-state-map (kbd "C-l") 'evil-forward-char)
+(define-key evil-insert-state-map (kbd "C-h") 'left-char)
+(define-key evil-insert-state-map (kbd "C-l") 'right-char)
 (define-key evil-insert-state-map (kbd "C-j") 'evil-next-line)
 (define-key evil-insert-state-map (kbd "C-k") 'evil-previous-line)
 (define-key evil-insert-state-map (kbd "TAB") 'yas-expand)
