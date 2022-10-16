@@ -638,7 +638,6 @@ before packages are loaded."
 
   ;; magit-auto-company
   ;; this is the folder where you keep all your git-controlled projects
-  ;(setq magit-repository-directories '("d:/project/"))
   ;(global-git-commit-mode t)
 
   (display-time-mode t)
@@ -647,6 +646,7 @@ before packages are loaded."
   (custom-set-faces '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
 
   (deepnetni-mode t)
+  (remove-hook 'python-mode-hook 'importmagic-mode)
 
   ;(setq hide-ifdef-initially t)
   ;(add-hook 'c-mode-common-hook
