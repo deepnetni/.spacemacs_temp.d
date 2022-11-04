@@ -29,7 +29,7 @@
 
 ;; ============================== evil ==============================
 
-(define-key evil-motion-state-map (kbd "b") 'backward-word)
+;(define-key evil-motion-state-map (kbd "b") 'backward-word)
 ;(define-key evil-motion-state-map (kbd "w") 'forward-word)
 (define-key evil-motion-state-map (kbd "M-u") 'evil-window-top)
 (define-key evil-motion-state-map (kbd "M-n") 'evil-window-bottom)
@@ -56,7 +56,9 @@
 
 (spacemacs/set-leader-keys
   "b k" 'kill-matching-buffers
-  "b l" 'ibuffer)
+  "b l" 'ibuffer
+  "c h" 'gendoxy-header
+  "c t" 'gendoxy-tag)
 
 (define-key evil-normal-state-map (kbd "C-a") 'evil-numbers/inc-at-pt)
 (define-key evil-normal-state-map (kbd "C-x") 'evil-numbers/dec-at-pt)

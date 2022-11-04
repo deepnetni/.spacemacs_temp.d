@@ -27,6 +27,11 @@
   (add-hook 'lsp-mode-hook #'lsp-enable-which-key-integration)
   (yas-global-mode))
 
+; jump over characters with _, e.g., ab_c
+(with-eval-after-load 'evil
+  (defalias #'forward-evil-word #'forward-evil-symbol)
+  (setq-default evil-symbol-word-search t))
+
 ;(add-hook 'python-mode-hook (lambda ()
 ; (set (make-local-variable 'company-backends)
 ; '(company-anaconda company-dabbrev company-ispell))))
