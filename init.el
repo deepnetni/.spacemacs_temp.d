@@ -28,16 +28,11 @@ This function should only modify configuration layer settings."
 
    ;; List of additional paths where to look for configuration layers.
    ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   ;; dotspacemacs-configuration-layer-path '("C:\\Users\\niyel\\AppData\\Roaming\\.spacemacs.d\\")
    dotspacemacs-configuration-layer-path '("~/.spacemacs.d/")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(windows-scripts
-     systemd
-     ;; javascript
-     ;; need do `pip install python-language-server'
-     ;(python :variables python-backend 'lsp)
+   '(
      ;; use anaconda as python's backend
      (python :variables python-backend 'anaconda)
      ;; ----------------------------------------------------------------
@@ -409,6 +404,11 @@ It should only modify the values of Spacemacs settings."
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
 
+   ;; A value from the range (0..100), in increasing opacity, which describes the
+   ;; transparency level of a frame background when it's active or selected. Transparency
+   ;; can be toggled through `toggle-background-transparency'. (default 90)
+   dotspacemacs-background-transparency 90
+
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
 
@@ -518,7 +518,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
-   ;; Show trailing whitespace (default t)
+   ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
+   ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
+   ;; (default t)
    dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
@@ -656,6 +658,7 @@ before packages are loaded."
   ;            (hide-ifdefs)))
   (setq-default ispell-program-name "aspell")
 )
+
 
 ;; Do not write anything past this comment. This is where Emacs will
 (setq custom-file (expand-file-name "custom.el" dotspacemacs-directory))

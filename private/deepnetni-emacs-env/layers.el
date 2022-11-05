@@ -28,3 +28,4 @@
 ;;(configuration-layer/declare-layer '(spacemacs-evil))
 
 (configuration-layer/remove-layer 'github)
+(configuration-layer/declare-layer 'c-c++)

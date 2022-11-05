@@ -45,6 +45,7 @@
 ;; Other layers should rely on pre-init or post-init functions.
 (defconst deepnetni-emacs-env-packages
   '((abbrev :location built-in)
+    all-the-icons
     counsel-etags
     (company :location built-in)
     company-anaconda
@@ -163,6 +164,14 @@ Each entry is either:
     (setq company-transformers '(company-sort-by-occurrence))
     (setq company-selection-wrap-around t))
 
+(defun deepnetni-emacs-env/pre-init-all-the-icons ()
+  (spacemacs|use-package-add-hook all-the-icons
+    :post-config
+    (setq inhibit-compacting-font-caches t)
+    (setq spaceline-all-the-icons-icon-set-window-numbering 'square)
+    (setq spaceline-all-the-icons-icon-set-eyebrowse-slot 'solid)
+    (setq spaceline-all-the-icons-icon-set-git-stats 'diff-icons)))
+
 (defun deepnetni-emacs-env/pre-init-company-anaconda ()
   (spacemacs|use-package-add-hook company-anaconda
     :post-init
@@ -234,8 +243,7 @@ Each entry is either:
       (global-set-key (kbd "C-c a") 'helm-ag-project-root)
       (global-set-key (kbd "C-l") 'helm-do-ag-project-root)
       (global-set-key (kbd "C-j") 'helm-resume)
-      (add-hook 'c-mode-hook 'helm-mode)
-      )
+      (add-hook 'c-mode-hook 'helm-mode))
     :config
     (advice-add 'helm-ag :after
                 (lambda (&optional basedir query) (evil-scroll-line-to-center (line-number-at-pos))))
