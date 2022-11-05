@@ -255,16 +255,13 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         sanityinc-tomorrow-blue
                          obsidian
                          zenburn
                          sanityinc-tomorrow-night
                          noctilux
-                         sanityinc-tomorrow-blue
                          monokai
-                         solarized-dark
-                         spacemacs-dark
-                         spacemacs-light
-                         )
+                         solarized-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -273,7 +270,9 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
+   ;; download fonts at https://github.com/domtronn/all-the-icons.el
+   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -282,11 +281,11 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("InputMono Medium"
+   dotspacemacs-default-font '("InputMono"
                                :size 14.0
                                :weight bold
                                :width normal
-                               :powerline-scale 0.6)
+                               :powerline-scale 1.1)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -321,7 +320,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "base"
+   dotspacemacs-default-layout-name "main"
 
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
@@ -587,16 +586,15 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
   (add-hook 'after-init-hook 'global-company-mode)
   (eval-after-load 'company
     '(add-to-list 'company-backends '(company-irony company-yasnippet)))
-  ;;(add-hook 'c-mode-hook 'irony-mode)
-  ;;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  ;(add-hook 'c-mode-hook 'irony-mode)
+  ;(add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   (add-hook 'dired-mode-hook 'auto-revert-mode)
   (defalias 'which-key-declare-prefixes 'ignore)
   (defalias 'which-key-declare-prefixes-for-mode 'ignore)
   (setq tramp-ssh-controlmaster-options
     "-o ControlMaster=auto -o ControlPath='tramp.%%C' -o ControlPersist=no")
   ;; init auto-dim-other-buffers
-  ;;(add-hook 'after-init-hook (lambda ()
-  ;;                             (auto-dim-other-buffers-mode t)))
+  ;(add-hook 'after-init-hook (lambda () (auto-dim-other-buffers-mode t)))
 )
 
 
@@ -639,16 +637,15 @@ before packages are loaded."
 
   ;; magit-auto-company
   ;; this is the folder where you keep all your git-controlled projects
-  ;(setq magit-repository-directories '("d:/project/"))
   ;(global-git-commit-mode t)
 
-  (deepnetni-mode t)
   (display-time-mode t)
+  ;; the cursor always remains in the centere of the file when set
   (global-centered-cursor-mode -1)
-  (custom-set-faces
-   '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
+  (custom-set-faces '(evil-ex-lazy-highlight ((t (:inherit isearch)))))
 
-  (spaceline-toggle-minor-modes-off)
+  (deepnetni-mode t)
+  (remove-hook 'python-mode-hook 'importmagic-mode)
 
   ;(setq hide-ifdef-initially t)
   ;(add-hook 'c-mode-common-hook
@@ -656,7 +653,7 @@ before packages are loaded."
   ;            (setq hide-ifdef-shadow t)
   ;            (hide-ifdef-mode t)
   ;            (hide-ifdefs)))
-  (setq-default ispell-program-name "aspell")
+  ;(setq-default ispell-program-name "aspell")
 )
 
 
