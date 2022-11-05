@@ -34,6 +34,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-configuration-layers
    '(markdown
      windows-scripts
+     ;vim-powerline
      systemd
      ;; javascript
      ;; need do `pip install python-language-server'
@@ -260,16 +261,13 @@ It should only modify the values of Spacemacs settings."
    ;; Press `SPC T n' to cycle to the next theme in the list (works great
    ;; with 2 themes variants, one dark and one light)
    dotspacemacs-themes '(
+                         sanityinc-tomorrow-blue
                          obsidian
-                         ;;zenburn
+                         zenburn
                          sanityinc-tomorrow-night
                          noctilux
-                         sanityinc-tomorrow-blue
                          monokai
-                         solarized-dark
-                         spacemacs-dark
-                         spacemacs-light
-                         )
+                         solarized-dark)
 
    ;; Set the theme for the Spaceline. Supported themes are `spacemacs',
    ;; `all-the-icons', `custom', `doom', `vim-powerline' and `vanilla'. The
@@ -278,7 +276,10 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   ;dotspacemacs-mode-line-theme '(vim-powerline)
+   ;dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
+   ;; download fonts at https://github.com/domtronn/all-the-icons.el
+   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -287,11 +288,11 @@ It should only modify the values of Spacemacs settings."
    ;; Default font or prioritized list of fonts. The `:size' can be specified as
    ;; a non-negative integer (pixel size), or a floating-point (point size).
    ;; Point size is recommended, because it's device independent. (default 10.0)
-   dotspacemacs-default-font '("InputMono Medium"
+   dotspacemacs-default-font '("InputMono"
                                :size 14.0
                                :weight bold
                                :width normal
-                               :powerline-scale 0.6)
+                               :powerline-scale 1.1)
 
    ;; The leader key (default "SPC")
    dotspacemacs-leader-key "SPC"
@@ -326,7 +327,7 @@ It should only modify the values of Spacemacs settings."
    dotspacemacs-distinguish-gui-tab nil
 
    ;; Name of the default layout (default "Default")
-   dotspacemacs-default-layout-name "base"
+   dotspacemacs-default-layout-name "main"
 
    ;; If non nil the default layout name is displayed in the mode-line.
    ;; (default nil)
@@ -662,7 +663,7 @@ before packages are loaded."
 ;; create custom-file if it is not exist
 ;(unless (file-exists-p custom-file)
 ;  (shell-command (concat "touch " custom-file)))
-(write-region "" nil custom-file)
-(load custom-file 'no-error 'no-message)
+;(write-region "" nil custom-file)
+;(load custom-file 'no-error 'no-message)
 
 ;; auto-generate custom variable definitions.

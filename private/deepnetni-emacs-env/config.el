@@ -1,24 +1,10 @@
-;; clean minor modes
-;(defvar hidden-minor-modes ; example, write your own list of hidden
-;  '(helm-mode            ; minor modes
-;    yas-minor-mode
-;    company-mode
-;    spacemacs-whitespace-cleanup-mode
-;    flyspell-mode
-;    ))
-
-;(defun purge-minor-modes ()
-;  (interactive)
-;  (dolist (x hidden-minor-modes nil)
-;    (let ((trg (cdr (assoc x minor-mode-alist))))
-;      (when trg
-;        (setcar trg "")))))
-
-;(add-hook 'after-change-major-mode-hook 'purge-minor-modes)
-;(add-hook 'after-init-hook 'spacemacs/toggle-centered-point-on)
-
 ;; lsp
 ;; use flycheck-verify-setup command to choose code check backends
+
+;; mode line configurations
+(with-eval-after-load 'spaceline
+  (setq spaceline-workspace-number-p nil)
+  (setq spaceline-buffer-size-p nil))
 
 ;(with-eval-after-load 'c-c++-mode (add-hook 'c++-mode-hook 'lsp))
 ;(with-eval-after-load 'lsp-mode
@@ -31,6 +17,9 @@
 (with-eval-after-load 'evil
   (defalias #'forward-evil-word #'forward-evil-symbol)
   (setq-default evil-symbol-word-search t))
+
+;; diminish lets you fight modeline clutter by removing or abbreviating minor mode indicators"
+;(eval-after-load "xx" '(diminish 'xx-mode))
 
 ;(add-hook 'python-mode-hook (lambda ()
 ; (set (make-local-variable 'company-backends)
@@ -73,7 +62,12 @@
             (setq tags-add-tables nil)
             (eval-after-load 'dired-quick-sort
               '(setq dired-quick-sort-suppress-setup-warning t))
+            ;; hide the minor mode indicators
             (spaceline-toggle-minor-modes-off)
+            (with-eval-after-load 'spaceline-all-the-icons
+              (spaceline-toggle-all-the-icons-buffer-size-off)
+              (spaceline-toggle-all-the-icons-flycheck-status-off)
+              (spaceline-toggle-all-the-icons-position-off))
             (global-undo-tree-mode 1)
             ;; configure coding system to support Chinese characters
             (set-language-environment 'Chinese-GB)

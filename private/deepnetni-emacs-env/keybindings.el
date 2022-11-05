@@ -27,6 +27,10 @@
 ;; ============================== python ==============================
 ;(define-key python-mode-map (kbd "C-j") 'helm-resume)
 
+
+;; ============================== eyebrowse ==============================
+(define-key global-map (kbd "C-`") 'eyebrowse-last-window-config)
+
 ;; ============================== evil ==============================
 
 ;(define-key evil-motion-state-map (kbd "b") 'backward-word)
