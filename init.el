@@ -85,10 +85,12 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(
-                                    tern
-                                    vi-tilde-fringe
-                                    )
+   dotspacemacs-excluded-packages '(tern
+                                    string-edit
+                                    farmhouse-theme
+                                    evil-ediff
+                                    darkburn-theme
+                                    vi-tilde-fringe)
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
    ;; `used-only' installs only explicitly used packages and deletes any unused
@@ -270,9 +272,9 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   ;dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.0)
+   dotspacemacs-mode-line-theme '(spacemacs :separator arrow :separator-scale 1.5)
    ;; download fonts at https://github.com/domtronn/all-the-icons.el
-   dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
+   ;dotspacemacs-mode-line-theme '(all-the-icons :separator arrow :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
